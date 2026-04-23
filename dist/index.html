@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Pitch2Ship — Speak Ideas. Ship Products.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&family=Comfortaa:wght@300;400;700&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --bg: #fff8f3;
+    --bg2: #fff0e6;
+    --surface: #ffffff;
+    --border: #ffd9c0;
+    --border2: rgba(255,150,100,0.2);
+    --accent1: #ff6b9d;
+    --accent2: #ffa726;
+    --accent3: #66bb6a;
+    --accent4: #42a5f5;
+    --accent5: #ab47bc;
+    --text: #2d2d2d;
+    --text2: #666666;
+    --text3: #999999;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: linear-gradient(135deg, var(--bg) 0%, #fff5f0 50%, #fffbf8 100%);
+    color: var(--text);
+    font-family: 'Comfortaa', sans-serif;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 48px;
+    height: 72px;
+    background: rgba(255,248,243,0.92);
+    backdrop-filter: blur(20px);
+    border-bottom: 2px solid var(--border);
+    box-shadow: 0 8px 32px rgba(255,107,157,0.08);
+  }
+
+  .nav-logo-kiro {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+  }
+  .nav-logo-kiro img:first-child {
+    height: 40px;
+    width: 40px;
+    border-radius: 12px;
+    filter: drop-shadow(0 4px 12px rgba(255,107,157,0.2));
+  }
+  .nav-logo-kiro img:last-child {
+    height: 24px;
+    width: auto;
+    filter: drop-shadow(0 0 0 #a855f7) drop-shadow(0 0 0 #a855f7) drop-shadow(0 0 0 #a855f7);
+  }
+
+  .nav-center {
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    letter-spacing: -0.5px;
+    background: linear-gradient(135deg, #ff6b9d 0%, #ffa726 50%, #42a5f5 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .nav-logo-eleven {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+  .eleven-mark {
+    width: 40px;
+    height: 40px;
+    background: #ffffff;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+  }
+  .eleven-mark svg { display: block; }
+  .nav-logo-eleven span {
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--text);
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 120px 24px 80px;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  /* floating shapes */
+  .shape {
+    position: absolute;
+    opacity: 0.4;
+    animation: float 6s ease-in-out infinite;
+  }
+  .shape1 { width: 120px; height: 120px; background: radial-gradient(circle, #ff6b9d, #ff8fab); border-radius: 30% 70% 70% 30%; top: 10%; left: 5%; animation-delay: 0s; }
+  .shape2 { width: 100px; height: 100px; background: radial-gradient(circle, #ffa726, #ffb74d); border-radius: 60% 40% 30% 70%; top: 60%; right: 8%; animation-delay: 2s; }
+  .shape3 { width: 90px; height: 90px; background: radial-gradient(circle, #42a5f5, #64b5f6); border-radius: 70% 30% 66% 34%; top: 15%; right: 12%; animation-delay: 1s; }
+  .shape4 { width: 110px; height: 110px; background: radial-gradient(circle, #66bb6a, #81c784); border-radius: 40% 60% 70% 30%; bottom: 10%; left: 10%; animation-delay: 3s; }
+  .shape5 { width: 80px; height: 80px; background: radial-gradient(circle, #ab47bc, #ce93d8); border-radius: 70% 30% 40% 60%; top: 40%; left: 8%; animation-delay: 2.5s; }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-30px) rotate(10deg); }
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, rgba(255,107,157,0.15), rgba(255,167,38,0.15));
+    border: 2px solid var(--border);
+    border-radius: 50px;
+    padding: 8px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--accent1);
+    letter-spacing: 0.5px;
+    margin-bottom: 32px;
+    animation: fadeUp 0.6s ease both;
+    font-family: 'Fredoka', sans-serif;
+  }
+  .badge-dot {
+    width: 8px; height: 8px;
+    background: var(--accent1);
+    border-radius: 50%;
+    animation: pulse 2s ease infinite;
+  }
+  @keyframes pulse {
+    0%,100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(1.2); }
+  }
+
+  h1 {
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 700;
+    font-size: clamp(38px, 6vw, 76px);
+    line-height: 1.1;
+    letter-spacing: -1.5px;
+    color: var(--text);
+    max-width: 800px;
+    animation: fadeUp 0.6s 0.1s ease both;
+  }
+  h1 em {
+    font-style: normal;
+    background: linear-gradient(135deg, #ff6b9d, #ffa726, #42a5f5);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-sub {
+    font-size: 18px;
+    color: var(--text2);
+    max-width: 520px;
+    line-height: 1.6;
+    margin-top: 24px;
+    font-weight: 400;
+    animation: fadeUp 0.6s 0.2s ease both;
+  }
+
+  .hero-cta {
+    margin-top: 44px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    animation: fadeUp 0.6s 0.3s ease both;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: linear-gradient(135deg, #ff6b9d, #ffa726);
+    color: #fff;
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    padding: 16px 32px;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    letter-spacing: -0.2px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(255,107,157,0.35), 0 0 0 0 rgba(255,107,157,0.1);
+    transition: box-shadow 0.3s, transform 0.15s;
+    transform: translateY(0);
+  }
+  .btn-primary:hover {
+    box-shadow: 0 12px 36px rgba(255,107,157,0.45), 0 0 0 8px rgba(255,107,157,0.1);
+    transform: translateY(-2px);
+  }
+  .btn-primary:active { transform: translateY(0); }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #ffffff;
+    color: var(--text);
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    padding: 16px 28px;
+    border-radius: 50px;
+    border: 2px solid var(--border);
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .btn-secondary:hover {
+    border-color: var(--accent1);
+    color: var(--accent1);
+    box-shadow: 0 6px 20px rgba(255,107,157,0.15);
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 36px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    color: var(--text3);
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    animation: fadeUp 0.6s 0.6s ease both;
+  }
+  .scroll-arrow {
+    width: 20px;
+    height: 20px;
+    animation: bounce 1.5s ease infinite;
+  }
+  @keyframes bounce {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(6px); }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* PIPELINE SECTION */
+  .pipeline {
+    padding: 100px 24px 120px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    text-align: center;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    background: linear-gradient(135deg, #ff6b9d, #ffa726);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 16px;
+    font-family: 'Fredoka', sans-serif;
+  }
+
+  .section-title {
+    text-align: center;
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 700;
+    font-size: clamp(28px, 5vw, 48px);
+    letter-spacing: -1px;
+    color: var(--text);
+    margin-bottom: 80px;
+  }
+  .section-title span { color: var(--text2); font-weight: 400; }
+
+  /* Steps */
+  .step {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
+    margin-bottom: 140px;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .step.visible { opacity: 1; transform: translateY(0); }
+  .step:nth-child(even) .step-content { order: 2; }
+  .step:nth-child(even) .step-visual { order: 1; }
+
+  .step-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Fredoka', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    background: rgba(255,107,157,0.1);
+    color: var(--accent1);
+    letter-spacing: 0.5px;
+    padding: 6px 14px;
+    border-radius: 50px;
+    margin-bottom: 16px;
+  }
+
+  .step-heading {
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 700;
+    font-size: clamp(24px, 4vw, 40px);
+    letter-spacing: -0.5px;
+    color: var(--text);
+    line-height: 1.15;
+    margin-bottom: 16px;
+  }
+  .step-body {
+    font-size: 16px;
+    color: var(--text2);
+    line-height: 1.7;
+  }
+
+  /* VISUAL CARDS */
+  .visual-card {
+    background: var(--surface);
+    border: 2px solid var(--border);
+    border-radius: 32px;
+    padding: 48px;
+    position: relative;
+    overflow: hidden;
+    min-height: 340px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 12px 40px rgba(255,107,157,0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .visual-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 48px rgba(255,107,157,0.15);
+  }
+
+  /* STEP 1 — Microphone */
+  .mic-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .mic-ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 2px solid rgba(255,107,157,0.3);
+    animation: ringPulse 2s ease infinite;
+  }
+  .mic-ring:nth-child(1) { width: 140px; height: 140px; animation-delay: 0s; }
+  .mic-ring:nth-child(2) { width: 190px; height: 190px; animation-delay: 0.4s; }
+  .mic-ring:nth-child(3) { width: 240px; height: 240px; animation-delay: 0.8s; }
+  @keyframes ringPulse {
+    0% { opacity: 1; transform: scale(0.9); }
+    50% { opacity: 0.4; transform: scale(1.05); }
+    100% { opacity: 1; transform: scale(0.9); }
+  }
+  .mic-btn {
+    width: 96px; height: 96px;
+    background: linear-gradient(135deg, #ff6b9d, #ff8fab);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 12px 40px rgba(255,107,157,0.4), inset -2px -2px 8px rgba(0,0,0,0.1), inset 2px 2px 8px rgba(255,255,255,0.5);
+    position: relative;
+    z-index: 1;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .mic-btn:hover { transform: scale(1.08); box-shadow: 0 16px 48px rgba(255,107,157,0.5), inset -2px -2px 8px rgba(0,0,0,0.1), inset 2px 2px 8px rgba(255,255,255,0.5); }
+  .mic-label {
+    margin-top: 32px;
+    font-size: 14px;
+    color: var(--text2);
+    letter-spacing: 0.5px;
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 600;
+  }
+  .mic-label-top {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 80px;
+  }
+
+  .waveform-mini {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    height: 36px;
+    margin-top: 8px;
+  }
+  .waveform-mini .bar {
+    width: 4px;
+    background: linear-gradient(135deg, #ff6b9d, #ffa726);
+    border-radius: 3px;
+    animation: waveAnim 0.8s ease infinite;
+  }
+  @keyframes waveAnim {
+    0%,100% { transform: scaleY(0.3); }
+    50% { transform: scaleY(1); }
+  }
+
+  /* STEP 2 — Chat */
+  .chat-ui {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .chat-msg {
+    max-width: 85%;
+    padding: 14px 18px;
+    border-radius: 24px;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  .chat-msg.ai {
+    background: #f5f5f5;
+    color: var(--text);
+    border-radius: 8px 24px 24px 24px;
+    align-self: flex-start;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  }
+  .chat-msg.user {
+    background: linear-gradient(135deg, #ff6b9d, #ff8fab);
+    color: #fff;
+    border-radius: 24px 8px 24px 24px;
+    align-self: flex-end;
+    box-shadow: 0 4px 16px rgba(255,107,157,0.3);
+  }
+  .chat-sender {
+    font-size: 11px;
+    color: var(--text3);
+    margin-bottom: 6px;
+    font-family: 'Fredoka', sans-serif;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+  }
+  .ai-msg-wrap { display: flex; flex-direction: column; align-items: flex-start; }
+  .user-msg-wrap { display: flex; flex-direction: column; align-items: flex-end; }
+
+  .typing-indicator {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 14px 18px;
+    background: #f5f5f5;
+    border-radius: 8px 24px 24px 24px;
+    align-self: flex-start;
+    width: fit-content;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  }
+  .typing-dot {
+    width: 8px; height: 8px;
+    background: var(--text3);
+    border-radius: 50%;
+    animation: typingBounce 1.2s ease infinite;
+  }
+  .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+  .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes typingBounce {
+    0%,100% { transform: translateY(0); }
+    40% { transform: translateY(-6px); }
+  }
+
+  /* STEP 3 — Files */
+  .files-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    width: 100%;
+  }
+  .file-card {
+    background: #fafafa;
+    border: 2px solid var(--border);
+    border-radius: 20px;
+    padding: 18px 22px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    transition: all 0.3s;
+    cursor: pointer;
+  }
+  .file-card:hover {
+    border-color: #ff6b9d;
+    background: linear-gradient(135deg, rgba(255,107,157,0.08), rgba(255,167,38,0.06));
+    transform: translateX(4px);
+    box-shadow: 0 6px 20px rgba(255,107,157,0.1);
+  }
+  .file-icon {
+    width: 44px; height: 44px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 24px;
+  }
+  .file-icon.req { background: rgba(102,187,106,0.15); }
+  .file-icon.design { background: rgba(171,71,188,0.15); }
+  .file-icon.tasks { background: rgba(66,165,245,0.15); }
+  .file-name {
+    font-family: 'Fredoka', sans-serif;
+    font-size: 14px;
+    color: var(--text);
+    font-weight: 700;
+  }
+  .file-desc {
+    font-size: 12px;
+    color: var(--text3);
+    margin-top: 4px;
+  }
+  .file-badge {
+    margin-left: auto;
+    font-size: 11px;
+    padding: 4px 10px;
+    border-radius: 8px;
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .file-badge.kiro { background: rgba(255,107,157,0.15); color: var(--accent1); }
+  .file-badge.lines { background: #eee; color: var(--text3); }
+
+  /* STEP 4 — Audio */
+  .audio-player {
+    width: 100%;
+    background: linear-gradient(135deg, #fff8f3, #fff0e6);
+    border: 2px solid var(--border);
+    border-radius: 24px;
+    padding: 32px;
+  }
+  .audio-header {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 28px;
+  }
+  .play-btn {
+    width: 56px; height: 56px;
+    background: linear-gradient(135deg, #ffa726, #ffb74d);
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-shadow: 0 8px 28px rgba(255,167,38,0.35), inset -2px -2px 6px rgba(0,0,0,0.1), inset 2px 2px 6px rgba(255,255,255,0.6);
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+  .play-btn:hover { transform: scale(1.1); box-shadow: 0 12px 36px rgba(255,167,38,0.45), inset -2px -2px 6px rgba(0,0,0,0.1), inset 2px 2px 6px rgba(255,255,255,0.6); }
+  .audio-title { font-weight: 700; font-size: 15px; color: var(--text); font-family: 'Fredoka', sans-serif; }
+  .audio-subtitle { font-size: 12px; color: var(--text3); margin-top: 4px; }
+  .waveform-full {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    height: 64px;
+    width: 100%;
+    overflow: hidden;
+  }
+  .wf-bar {
+    flex: 1;
+    background: #e0e0e0;
+    border-radius: 3px;
+    min-width: 3px;
+    transition: background 0.2s;
+  }
+  .wf-bar.played { background: linear-gradient(135deg, #ffa726, #ffb74d); }
+  .wf-bar.playing { background: var(--accent2); animation: wfPlay 0.3s ease infinite alternate; }
+  @keyframes wfPlay {
+    from { opacity: 0.6; }
+    to { opacity: 1; }
+  }
+  .audio-times {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 12px;
+    font-family: 'Fredoka', sans-serif;
+    font-size: 12px;
+    color: var(--text3);
+    font-weight: 600;
+  }
+  .audio-progress {
+    position: relative;
+    height: 5px;
+    background: #ddd;
+    border-radius: 3px;
+    margin-top: 18px;
+    cursor: pointer;
+  }
+  .audio-progress-fill {
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 35%;
+    background: linear-gradient(90deg, #ffa726, #ffb74d);
+    border-radius: 3px;
+  }
+  .audio-progress-thumb {
+    position: absolute;
+    width: 14px; height: 14px;
+    background: #fff;
+    border-radius: 50%;
+    top: 50%;
+    left: 35%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 4px 12px rgba(255,167,38,0.4);
+  }
+  .demo-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(102,187,106,0.15);
+    border: 2px solid rgba(102,187,106,0.4);
+    color: var(--accent3);
+    font-size: 12px;
+    font-weight: 700;
+    padding: 6px 12px;
+    border-radius: 50px;
+    font-family: 'Fredoka', sans-serif;
+    margin-left: auto;
+  }
+  .demo-dot { width: 6px; height: 6px; background: var(--accent3); border-radius: 50%; animation: pulse 1.5s ease infinite; }
+
+  /* CTA SECTION */
+  .cta-section {
+    padding: 100px 24px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #fff8f3 0%, #fff0e6 50%, #fffbf8 100%);
+    border-radius: 40px;
+    margin: 60px 20px;
+    border: 2px dashed var(--border);
+  }
+
+  .cta-section h2 {
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 700;
+    font-size: clamp(32px, 6vw, 64px);
+    letter-spacing: -1px;
+    color: var(--text);
+    margin-bottom: 20px;
+  }
+  .cta-section p {
+    font-size: 18px;
+    color: var(--text2);
+    max-width: 440px;
+    margin: 0 auto 44px;
+    line-height: 1.6;
+  }
+
+  /* FOOTER */
+  footer {
+    border-top: 2px solid var(--border);
+    padding: 36px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--text3);
+    font-size: 13px;
+    background: rgba(255,248,243,0.5);
+  }
+
+  /* TWEAKS PANEL */
+  #tweaks-panel {
+    display: none;
+    position: fixed;
+    bottom: 24px; right: 24px;
+    width: 300px;
+    background: rgba(255,248,243,0.95);
+    border: 2px solid var(--border);
+    border-radius: 24px;
+    padding: 24px;
+    z-index: 999;
+    box-shadow: 0 16px 48px rgba(255,107,157,0.2);
+    font-size: 14px;
+    backdrop-filter: blur(10px);
+  }
+  #tweaks-panel.visible { display: block; }
+  .tweaks-title {
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--text);
+    margin-bottom: 16px;
+    letter-spacing: -0.3px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .tweaks-title::before { content: '✨'; font-size: 14px; }
+  .tweak-row { margin-bottom: 18px; }
+  .tweak-label { font-size: 12px; color: var(--text3); margin-bottom: 8px; letter-spacing: 0.5px; font-family: 'Fredoka', sans-serif; font-weight: 700; }
+  .tweak-options { display: flex; gap: 6px; flex-wrap: wrap; }
+  .tweak-opt {
+    padding: 6px 12px;
+    border-radius: 12px;
+    border: 2px solid var(--border);
+    background: transparent;
+    color: var(--text2);
+    font-size: 12px;
+    cursor: pointer;
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 600;
+    transition: 0.15s;
+  }
+  .tweak-opt.active, .tweak-opt:hover { border-color: var(--accent1); color: var(--accent1); background: rgba(255,107,157,0.08); }
+  .tweak-sep { height: 1px; background: var(--border); margin: 14px 0; }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    nav { padding: 12px 20px; }
+    .nav-center { display: none; }
+    .step { grid-template-columns: 1fr; gap: 32px; }
+    .step:nth-child(even) .step-content { order: 1; }
+    .step:nth-child(even) .step-visual { order: 2; }
+    .shape { display: none; }
+    footer { flex-direction: column; gap: 12px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="https://kiro.dev" target="_blank" class="nav-logo-kiro">
+    <img src="/assets/kiro-icon-Co9E1NaY.png" alt="Kiro" />
+    <img src="https://kiro.dev/images/kiro-wordmark.png?h=0ad65a93" alt="Kiro" style="height:24px; width:auto; display:block; filter: invert(0.1) hue-rotate(270deg) saturate(4) brightness(0.85);" />
+  </a>
+  <div class="nav-center">Pitch2Ship</div>
+  <a href="#" class="nav-logo-eleven">
+    <div class="eleven-mark">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+        <rect x="5" y="3" width="3" height="14" rx="1.5" fill="#000"/>
+        <rect x="12" y="3" width="3" height="14" rx="1.5" fill="#000"/>
+      </svg>
+    </div>
+    <span>ElevenLabs</span>
+  </a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg">
+    <div class="shape shape1"></div>
+    <div class="shape shape2"></div>
+    <div class="shape shape3"></div>
+    <div class="shape shape4"></div>
+    <div class="shape shape5"></div>
+  </div>
+  <div style="position: relative; z-index: 2; margin-bottom: 40px;">
+    <div class="nav-center" style="font-size: 110px; margin: 0;">Pitch<span class="x" style="color: #a855f7;">2</span>Ship</div>
+  </div>
+  <div class="hero-badge"><div class="badge-dot"></div>Powered by Kiro + ElevenLabs AI</div>
+  <h1>Speak your <em>wildest idea.</em><br/>Watch it come to <em>life instantly.</em></h1>
+  <p class="hero-sub">Turn voice into a complete Kiro spec, beautiful UI, and a professional demo — no docs, no waiting. Just speak.</p>
+  <div class="hero-cta">
+    <a href="#" class="btn-primary">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+        <rect x="9" y="2" width="6" height="12" rx="3" fill="white"/>
+        <path d="M5 11a7 7 0 0 0 14 0" stroke="white" stroke-width="2" stroke-linecap="round"/>
+        <line x1="12" y1="18" x2="12" y2="22" stroke="white" stroke-width="2" stroke-linecap="round"/>
+        <line x1="8" y1="22" x2="16" y2="22" stroke="white" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+      Start Speaking
+    </a>
+    <a href="#how" class="btn-secondary">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/><polygon points="10,8 16,12 10,16" fill="currentColor"/></svg>
+      See the magic
+    </a>
+  </div>
+  <div class="scroll-hint">
+    <span>Scroll down</span>
+    <svg class="scroll-arrow" viewBox="0 0 20 20" fill="none">
+      <path d="M10 4v12M4 10l6 6 6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </div>
+</section>
+
+<!-- PIPELINE -->
+<section class="pipeline" id="how">
+  <div class="section-label">✨ How it works ✨</div>
+  <div class="section-title">Four fun steps to <span>your</span> masterpiece</div>
+
+  <!-- STEP 1 -->
+  <div class="step" data-screen-label="01 Speak Your Idea">
+    <div class="step-content">
+      <div class="step-tag">🎤 Step 1 / Capture</div>
+      <h2 class="step-heading">Hit record and just chat</h2>
+      <p class="step-body">No fancy language needed. Talk like you're explaining to a friend — tell us your idea, the problem you're solving, who uses it, the whole vibe. We're listening! 👂</p>
+    </div>
+    <div class="step-visual">
+      <div class="visual-card">
+        <div class="mic-label-top">
+          <div class="mic-wrapper">
+            <div class="mic-ring"></div>
+            <div class="mic-ring"></div>
+            <div class="mic-ring"></div>
+            <div class="mic-btn">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+                <rect x="9" y="2" width="6" height="12" rx="3" fill="white"/>
+                <path d="M5 11a7 7 0 0 0 14 0" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                <line x1="12" y1="18" x2="12" y2="22" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                <line x1="8" y1="22" x2="16" y2="22" stroke="white" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+          </div>
+          <div class="mic-label">● RECORDING 0:47</div>
+        </div>
+        <div class="waveform-mini" id="waveform-live">
+          <!-- bars injected by JS -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 2 -->
+  <div class="step" data-screen-label="02 AI Asks Questions">
+    <div class="step-content">
+      <div class="step-tag">💬 Step 2 / Clarify</div>
+      <h2 class="step-heading">AI gets curious with you</h2>
+      <p class="step-body">Our smart AI digs in with thoughtful questions about scope, users, platform, and edge cases. It fills the blanks *before* building anything, so your spec is rock-solid. 🎯</p>
+    </div>
+    <div class="step-visual">
+      <div class="visual-card">
+        <div class="chat-ui">
+          <div class="ai-msg-wrap">
+            <div class="chat-sender">Pitch2Ship AI</div>
+            <div class="chat-msg ai">Ooh, I love it! Who's using this day-to-day, and what problem does it *really* solve for them?</div>
+          </div>
+          <div class="user-msg-wrap">
+            <div class="chat-sender">You</div>
+            <div class="chat-msg user">Designers who want quick prototypes without building from scratch.</div>
+          </div>
+          <div class="ai-msg-wrap">
+            <div class="chat-sender">Pitch2Ship AI</div>
+            <div class="chat-msg ai">Nice! Should this be a mobile app, web app, or both? And what's your launch timeline? 🚀</div>
+          </div>
+          <div class="typing-indicator">
+            <div class="typing-dot"></div>
+            <div class="typing-dot"></div>
+            <div class="typing-dot"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 3 -->
+  <div class="step" data-screen-label="03 Get Your Spec">
+    <div class="step-content">
+      <div class="step-tag">📋 Step 3 / Spec</div>
+      <h2 class="step-heading">Three perfect spec files, ready</h2>
+      <p class="step-body">You get <strong>requirements.md</strong> with user stories, <strong>design.md</strong> with UI choices, and <strong>tasks.md</strong> — a complete breakdown to start building right now. ⚡</p>
+    </div>
+    <div class="step-visual">
+      <div class="visual-card">
+        <div class="files-grid">
+          <div class="file-card">
+            <div class="file-icon req">📝</div>
+            <div>
+              <div class="file-name">requirements.md</div>
+              <div class="file-desc">User stories · Acceptance criteria</div>
+            </div>
+            <div class="file-badge kiro">Kiro</div>
+          </div>
+          <div class="file-card">
+            <div class="file-icon design">🎨</div>
+            <div>
+              <div class="file-name">design.md</div>
+              <div class="file-desc">UI components · Layout decisions</div>
+            </div>
+            <div class="file-badge kiro">Kiro</div>
+          </div>
+          <div class="file-card">
+            <div class="file-icon tasks">✅</div>
+            <div>
+              <div class="file-name">tasks.md</div>
+              <div class="file-desc">Build plan · Sprint breakdown</div>
+            </div>
+            <div class="file-badge lines">28 tasks</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 4 -->
+  <div class="step" data-screen-label="04 Your Demo Video">
+    <div class="step-content">
+      <div class="step-tag">🎬 Step 4 / Demo</div>
+      <h2 class="step-heading">Narrated demo video included</h2>
+      <p class="step-body">ElevenLabs AI narrates your concept as a smooth walkthrough, synced to your UI preview. Share the link with your team — zero editing, total polish. 🌟</p>
+    </div>
+    <div class="step-visual">
+      <div class="visual-card">
+        <div class="audio-player">
+          <div class="audio-header">
+            <button class="play-btn" id="play-btn">
+              <svg id="play-icon" width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <polygon points="5,3 19,12 5,21" fill="white"/>
+              </svg>
+            </button>
+            <div>
+              <div class="audio-title">Your Pitch2Ship Demo</div>
+              <div class="audio-subtitle">Narrated by ElevenLabs · 2:14</div>
+            </div>
+            <div class="demo-tag"><div class="demo-dot"></div>Live</div>
+          </div>
+          <div class="waveform-full" id="waveform-demo"></div>
+          <div class="audio-progress">
+            <div class="audio-progress-fill" id="progress-fill"></div>
+            <div class="audio-progress-thumb" id="progress-thumb"></div>
+          </div>
+          <div class="audio-times">
+            <span id="time-cur">0:36</span>
+            <span>2:14</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <h2>Your idea to live product<br/>in 5 minutes ✨</h2>
+  <p>No docs. No waiting. Just speak and watch the magic happen.</p>
+  <a href="#" class="btn-primary" style="font-size:18px; padding: 20px 44px; border-radius: 50px; display: inline-flex; align-items: center; gap: 12px;">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+      <rect x="9" y="2" width="6" height="12" rx="3" fill="white"/>
+      <path d="M5 11a7 7 0 0 0 14 0" stroke="white" stroke-width="2" stroke-linecap="round"/>
+      <line x1="12" y1="18" x2="12" y2="22" stroke="white" stroke-width="2" stroke-linecap="round"/>
+      <line x1="8" y1="22" x2="16" y2="22" stroke="white" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+    Start Your Journey
+  </a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>💜 Made with Kiro + ElevenLabs magic</div>
+  <div style="display:flex; gap: 24px;">
+    <a href="#" style="color:var(--text3); text-decoration:none;">Privacy</a>
+    <a href="#" style="color:var(--text3); text-decoration:none;">Terms</a>
+    <a href="#" style="color:var(--text3); text-decoration:none;">GitHub</a>
+  </div>
+</footer>
+
+<!-- TWEAKS PANEL -->
+<div id="tweaks-panel">
+  <div class="tweaks-title">Customize</div>
+  <div class="tweak-row">
+    <div class="tweak-label">VIBE</div>
+    <div class="tweak-options">
+      <button class="tweak-opt active" onclick="setVibe('pop')">Pop</button>
+      <button class="tweak-opt" onclick="setVibe('soft')">Soft Pastel</button>
+      <button class="tweak-opt" onclick="setVibe('bold')">Bold & Bright</button>
+    </div>
+  </div>
+  <div class="tweak-sep"></div>
+  <div class="tweak-row">
+    <div class="tweak-label">HEADLINE</div>
+    <div class="tweak-options">
+      <button class="tweak-opt active" onclick="setHeadline('Speak your <em>wildest idea.</em><br/>Watch it come to <em>life instantly.</em>')">Wildest Idea</button>
+      <button class="tweak-opt" onclick="setHeadline('From <em>voice</em> to <br/><em>working spec</em> in minutes.')">Voice to Spec</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// Waveform live bars
+const waveformLive = document.getElementById('waveform-live');
+const heights = [0.3, 0.7, 1.0, 0.6, 0.9, 0.4, 0.8, 0.5, 1.0, 0.3, 0.7, 0.9, 0.4, 0.6, 1.0, 0.5, 0.8, 0.3, 0.9, 0.6];
+heights.forEach((h, i) => {
+  const bar = document.createElement('div');
+  bar.className = 'bar';
+  bar.style.height = (h * 32 + 4) + 'px';
+  bar.style.animationDelay = (i * 0.07) + 's';
+  bar.style.animationDuration = (0.6 + Math.random() * 0.5) + 's';
+  waveformLive.appendChild(bar);
+});
+
+// Waveform demo bars
+const waveformDemo = document.getElementById('waveform-demo');
+const totalBars = 88;
+const playedPct = 0.35;
+for (let i = 0; i < totalBars; i++) {
+  const bar = document.createElement('div');
+  const pct = i / totalBars;
+  const h = Math.abs(Math.sin(i * 0.4) * 40 + Math.sin(i * 0.9) * 18 + 8);
+  bar.className = 'wf-bar' + (pct < playedPct ? ' played' : pct < playedPct + 0.02 ? ' playing' : '');
+  bar.style.height = h + 'px';
+  waveformDemo.appendChild(bar);
+}
+
+// Play button simulation
+let playing = false;
+let pct = 0.35;
+let raf;
+const playBtn = document.getElementById('play-btn');
+const playIcon = document.getElementById('play-icon');
+const progressFill = document.getElementById('progress-fill');
+const progressThumb = document.getElementById('progress-thumb');
+const timeCur = document.getElementById('time-cur');
+
+function updateProgress(p) {
+  progressFill.style.width = (p * 100) + '%';
+  progressThumb.style.left = (p * 100) + '%';
+  const secs = Math.floor(p * 134);
+  const m = Math.floor(secs / 60);
+  const s = secs % 60;
+  timeCur.textContent = m + ':' + String(s).padStart(2,'0');
+  const bars = waveformDemo.querySelectorAll('.wf-bar');
+  bars.forEach((b, i) => {
+    const bp = i / bars.length;
+    b.className = 'wf-bar' + (bp < p ? ' played' : bp < p + 0.015 ? ' playing' : '');
+  });
+}
+
+function animate() {
+  if (!playing) return;
+  pct += 0.0003;
+  if (pct >= 1) { pct = 0; playing = false; renderPlayBtn(); return; }
+  updateProgress(pct);
+  raf = requestAnimationFrame(animate);
+}
+
+function renderPlayBtn() {
+  playIcon.innerHTML = playing
+    ? '<rect x="6" y="4" width="4" height="16" rx="1" fill="white"/><rect x="14" y="4" width="4" height="16" rx="1" fill="white"/>'
+    : '<polygon points="5,3 19,12 5,21" fill="white"/>';
+}
+
+playBtn.addEventListener('click', () => {
+  playing = !playing;
+  renderPlayBtn();
+  if (playing) animate();
+  else cancelAnimationFrame(raf);
+});
+
+// Intersection observer for step animations
+const steps = document.querySelectorAll('.step');
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.15 });
+steps.forEach(s => obs.observe(s));
+
+// Tweaks
+window.addEventListener('message', e => {
+  if (e.data?.type === '__activate_edit_mode') document.getElementById('tweaks-panel').classList.add('visible');
+  if (e.data?.type === '__deactivate_edit_mode') document.getElementById('tweaks-panel').classList.remove('visible');
+});
+window.parent.postMessage({ type: '__edit_mode_available' }, '*');
+
+function setVibe(vibe) {
+  const vibes = {
+    pop: { bg: '#fff8f3', accent1: '#ff6b9d', accent2: '#ffa726', accent3: '#66bb6a', accent4: '#42a5f5' },
+    soft: { bg: '#fef5f0', accent1: '#e89bb5', accent2: '#f5c8a6', accent3: '#a8d5ba', accent4: '#a8c8e1' },
+    bold: { bg: '#fffaf5', accent1: '#e91e63', accent2: '#ff9800', accent3: '#4caf50', accent4: '#2196f3' }
+  };
+  const v = vibes[vibe];
+  document.documentElement.style.setProperty('--bg', v.bg);
+  document.documentElement.style.setProperty('--accent1', v.accent1);
+  document.documentElement.style.setProperty('--accent2', v.accent2);
+  document.documentElement.style.setProperty('--accent3', v.accent3);
+  document.documentElement.style.setProperty('--accent4', v.accent4);
+  document.querySelectorAll('.tweak-opt').forEach(o => o.classList.remove('active'));
+  event.target.classList.add('active');
+}
+
+function setHeadline(html) {
+  document.querySelector('h1').innerHTML = html;
+}
+</script>
+</body>
+</html>
